@@ -1,3 +1,4 @@
+#!/bin/bash
 - name: configuring mongodb server
   become: yes
   hosts: mongodb
