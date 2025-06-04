@@ -24,7 +24,7 @@
 
 - name: print catalogue output
   ansible.builtin.debug:
-    msg: " catalogue_output "
+    msg: "{{ catalogue_output }}"
 
 - name: load products
   ansible.builtin.shell: mongosh --host mongodb.vara84s.site < /app/db/master-data.js
