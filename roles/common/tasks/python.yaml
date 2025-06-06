@@ -1,5 +1,5 @@
 - name: install python3 packages
-  ansible.builtin.dnf:
+  ansible.builtin.pip:
     name: "{{ item }}"
     state: installed
   loop:
