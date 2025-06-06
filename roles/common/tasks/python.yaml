@@ -3,8 +3,8 @@
     name: "{{ item }}"
     state: installed
   loop:
-  - python3 
-  - gcc 
+  - python3
+  - gcc
   - python3-devel
 
   - name: install dependencies
