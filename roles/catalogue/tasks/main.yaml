@@ -19,7 +19,7 @@
     state: present
 
 - name: check products loaded or not
-  ansible.builtin.command: mongosh --host mongodb.vara84s.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  ansible.builtin.command: mongosh --host mongodb.daws84s.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
   register: catalogue_output
   ignore_errors: true
   ignore_unreachable: true
@@ -27,13 +27,13 @@
 - name: print catalogue output
   ansible.builtin.debug:
     msg: "{{ catalogue_output }}"
-    ignore_errors: true
-    ignore_unreachable: true
+  ignore_errors: true
+  ignore_unreachable: true
 
 - name: load products
-  ansible.builtin.shell: mongosh --host mongodb.vara84s.site < /app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongodb.daws84s.site < /app/db/master-data.js
   when: catalogue_output.stdout | int < 0
-  ignore_errors: "true"
+  ignore_errors: true
   ignore_unreachable: true
 
 - name: systemd setup
@@ -41,9 +41,9 @@
     name: common
     tasks_from: systemd.yaml
 
-- name: app setup
-  tags:
-  - deployment    
-  include_role:
+- name: Deployment
+  tags: 
+  - deployment
+  import_role:
     name: common
     tasks_from: deployment
