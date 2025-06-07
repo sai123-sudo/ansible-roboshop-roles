@@ -1,4 +1,6 @@
 - name: stop the service
+  tags: 
+  - deployment
   ansible.builtin.service:
     name: "{{ component }}"
     state: stopped
@@ -13,12 +15,12 @@
     state: directory
     path: /app
 
-- name: dowanload application
-  ansible.builtin.get.unarchive:
-   src: "https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v{{ app_version }}.zip"
-   dest: /app
-   remote_src: yes
-   
+- name: download application
+  ansible.builtin.unarchive:
+    src: "https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v{{ app_version }}.zip"
+    dest: /app
+    remote_src: yes
+
 - name: install dependencies
   community.general.npm:
     path: /app
