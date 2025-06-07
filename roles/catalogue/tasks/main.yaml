@@ -31,6 +31,7 @@
   ansible.builtin.shell: mongosh --host mongodb.vara84s.site < /app/db/master-data.js
   when: catalogue_output.stdout | int < 0
   ignore_errors: "true"
+  ignore_unreachable: true
 
 - name: systemd setup
   include_role:
